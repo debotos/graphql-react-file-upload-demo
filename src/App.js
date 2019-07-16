@@ -1,24 +1,21 @@
 import React from 'react'
 import './App.css'
 
-import gql from 'graphql-tag'
-import { Mutation } from 'react-apollo'
-
-const uploadImage = gql`
-	mutation($file: Upload!) {
-		changeProfileImage(image: $file) {
-			secure_url
-		}
-	}
-`
+import Single from './Single'
+import Multiple from './Multiple'
 
 function App() {
 	return (
-		<Mutation mutation={uploadImage}>
-			{mutate => (
-				<input type="file" onChange={e => mutate({ variables: { file: e.target.files[0] } })} />
-			)}
-		</Mutation>
+		<>
+			<h1>Single File Upload</h1>
+			<div className="single-file-input">
+				<Single />
+			</div>
+			<h1>Multiple File Upload</h1>
+			<div className="multiple-file-input">
+				<Multiple />
+			</div>
+		</>
 	)
 }
 
